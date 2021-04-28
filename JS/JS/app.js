@@ -57,35 +57,13 @@ console.log(getWorthyWorkers(workers));
 const path = "/users/download/index.html"
 const html = '.html';
 
-function isHtml (path){
-
-    const pathSlice = path.slice(-5);
-
-    console.log(pathSlice);
-
-    if(pathSlice === html){
-        return true;
-    } else{
-        return false;
-    }
-
-}
+const isHtml = path => path.slice(-5) === html;
 
 console.log(isHtml(path));
 //////////////////////////////////////////////////////////////////////
 const mixedArray = [3,13,74,14,66,15,22,4];
-function isEven (num) {
+const isEven = num => mixedArray.filter(i => i % 2 === 0)
     
-    let massive = [];
-
-    for(let i = 0; i < num.length; i++){
-        if(num[i] % 2 == 0){
-            massive.push(num[i]);
-        } 
-    }
-    return massive;
-};
-
 console.log(isEven(mixedArray));
 //////////////////////////////////////////////////////////////////////
 const items = document.querySelector('.items');
@@ -125,4 +103,32 @@ leftBtn.addEventListener('click', e =>{
         items.style.right = `${currentRight}px`;
     }
     
+});
+//////////////////////////////////////////////////////////////////////
+const btn = document.querySelector('.button');
+
+btn.addEventListener('click', () =>{
+
+    const overlay = document.createElement('div');
+    overlay.classList.add('overlay');
+    const container = document.createElement('div');
+    container.classList.add('container');
+    const content = document.createElement('div');
+    const close = document.createElement('div');
+    content.classList.add('content');
+    close.classList.add('close');
+    content.innerText = 'Hello world';
+    close.innerText = 'Х';
+
+    document.body.appendChild(overlay);
+    overlay.appendChild(container);
+    container.appendChild(content);
+    container.appendChild(close);
+
+    document.querySelector('.close').onclick = function(){
+        document.body.removeChild(overlay);
+    };
+    document.querySelector('.overlay').onclick = function(){
+        document.body.removeChild(overlay);
+    };
 });
